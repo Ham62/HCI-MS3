@@ -3,7 +3,7 @@
 	<TITLE>Home</TITLE>
 
 	<LINK REL=stylesheet TYPE="text/css" HREF="style.css">
-	<SCRIPT TYPE="text/javascript" SRC="scripts.js"></SCRIPT>
+	<SCRIPT TYPE="text/javascript" SRC="scripts/scripts.js"></SCRIPT>
 </HEAD>
 <BODY>
 	<DIV id="header">
@@ -12,21 +12,21 @@
 		</DIV>
 
 		<DIV id="nav">
-			<A HREF="stats.htm">
+			<A HREF="javascript:void;" onclick="showStats()">
 				<DIV class="button">
 					<IMG SRC="media/images/icostats.png" ALT="">
 					Stats
 				</DIV>
 			</A>
 
-			<A HREF="index.htm">
+			<A HREF="javascript:void;" onclick="showHome()">
 				<DIV class="button">
 					<IMG SRC="media/images/icohome.png" ALT="">
 					Home
 				</DIV>
 			</A>
 
-			<A HREF="stats.htm">
+			<A HREF="javascript:void;" onclick="showSettings()">
 				<DIV class="button">
 					<IMG SRC="media/images/icostats.png" ALT="">
 					Settings
@@ -39,9 +39,9 @@
 	<DIV id="content">
 		<DIV id="bubble">
 			<DIV class="content">
-				<IMG SRC="media/images/addbutton.png">
-				Add Order...
-				<button onclick="createBubble()">New Bubble</button>
+				<A HREF="javascript:void;" onclick="createBubble()">
+					<IMG SRC="media/images/addbutton.png">Add Order...
+				</A>
 			</DIV>
 		</DIV>
 	</DIV>
