@@ -94,11 +94,11 @@ body {
 	margin-left: 50%;
 	transform: translate(-50%, -0.5em);
 
-	font-size: 23pt;
+	font-size: 14pt;
 }
 
 #bubble .content img {
-	transform: translate(0, 0.5em);
+	/*transform: translate(0, 0.5em);*/
 }
 
 /* Standardize box sizing */

@@ -1,6 +1,9 @@
 // Entered order objects for the main page
 var orderList = [];
 
+// Which range did we select for the graph?
+var selectedRange = "week";
+
 function createID() {
 	var result           = '';
 	var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -32,13 +35,200 @@ function createBubble(innerContent) {
 	return bubble;
 }
 
+function showStats() {
+	var docContent = document.getElementById("content");
+	docContent.innerHTML = "";
+
+	var selectRange = '<FORM ID="selectRange">'+
+				'<P>Show data for:</P>' + 
+				'<INPUT TYPE = "radio" ID="year" name="rangeSel" value="year" onClick="changeRangeSel(this)">' +
+				'<LABEL FOR="year">Last Year</LABEL>' +
+				'<INPUT TYPE = "radio" ID="month" name="rangeSel" value="month" onClick="changeRangeSel(this)">' +
+				'<LABEL FOR="year">Last Month</LABEL>' +
+				'<INPUT TYPE = "radio" ID="week" name="rangeSel" value="week" onClick="changeRangeSel(this)">' +
+				'<LABEL FOR="year">Last Week</LABEL>' +
+				'</FORM>' +
+				'<A HREF="">Change Budget Goals</A>';
+
+	var bblSelRange = createBubble(selectRange);
+	docContent.appendChild(bblSelRange);
+
+	// Set selected radio
+	document.getElementById(selectedRange).checked = true;
+
+	// Show graphs
+	genGraphs();
+}
+
+// Redraw graphs when selected range changes
+function changeRangeSel(newSelection) {
+	selectedRange = newSelection.value;
+	showStats();
+}
+
+function genGraphs() {
+	var docContent = document.getElementById("content");
+
+	docContent.appendChild(createBubble('<canvas id="spendingChart"></canvas>'));
+	addSpendingGraph();
+}
+
+function addSpendingGraph() {
+	const ctx = document.getElementById('spendingChart').getContext('2d');
+	if (selectedRange == "week") {
+		const myChart = new Chart(ctx, {
+	               type: 'bar',
+	                data: {
+	                    labels: [
+	                    'Monday',
+	                    'Tuesday',
+	                    'Wednesday',
+	                    'Thursday',
+	                    'Friday',
+	                    'Saturday',
+	                    'Sunday'
+	                    ],
+	                datasets: [{
+	                    label: 'Your daily Expenditure ($)',
+	                    data: [10, 8, 15, 12, 16, 14, 20],
+	                    backgroundColor: [
+	                        'rgba(255, 99, 132, 0.2)',
+	                        'rgba(54, 162, 235, 0.2)',
+	                        'rgba(255, 206, 86, 0.2)',
+	                        'rgba(75, 192, 192, 0.2)',
+	                        'rgba(153, 102, 255, 0.2)',
+	                        'rgba(255, 159, 64, 0.2)',
+	                        'rgba(54, 162, 235, 0.5)',                
+	                    ],
+	                    borderColor:[
+	                        'rgba(255, 99, 132, 0.2)',
+	                        'rgba(54, 162, 235, 0.2)',
+	                        'rgba(255, 206, 86, 0.2)',
+	                        'rgba(75, 192, 192, 0.2)',
+	                        'rgba(153, 102, 255, 0.2)',
+	                        'rgba(255, 159, 64, 0.2)',
+	                        'rgba(54, 162, 235, 0.5)',
+	                    ],
+	                    hoverOffset: 2,
+	                    borderWidth: 1.5,
+	                }]
+	        },
+	            options: {
+	                scales:{
+	                    y: {
+	                        beginAtZero: true
+	                    }
+	                }
+	            }
+	    });
+ 
+	} else if (selectedRange == "month") {
+            const myChart = new Chart(ctx, {
+	                type: 'bar',
+	                data: {
+	                    labels: [
+	                    'Week1',
+	                    'Week2',
+	                    'Week3',
+	                    'Week4',
+	                    'Week5',
+	                    'Week6',
+	                    'Week7'
+	                    ],
+	                datasets: [{
+	                    label: 'Your Weekly Expenditure',
+	                    data: [100, 75, 97, 110, 85, 105, 120],
+	                    backgroundColor: [
+	                        'rgba(255, 99, 132, 0.2)',
+	                        'rgba(54, 162, 235, 0.2)',
+	                        'rgba(255, 206, 86, 0.2)',
+        	                'rgba(75, 192, 192, 0.2)',
+	                        'rgba(153, 102, 255, 0.2)',
+	                        'rgba(255, 159, 64, 0.2)',
+	                        'rgba(54, 162, 235, 0.5)',                
+	                    ],
+	                    borderColor:[
+	                        'rgba(255, 99, 132, 0.2)',
+	                        'rgba(54, 162, 235, 0.2)',
+	                        'rgba(255, 206, 86, 0.2)',
+	                        'rgba(75, 192, 192, 0.2)',
+	                        'rgba(153, 102, 255, 0.2)',
+	                        'rgba(255, 159, 64, 0.2)',
+	                        'rgba(54, 162, 235, 0.5)',
+	                    ],
+	                    hoverOffset: 2,
+	                    borderWidth: 1.5,
+	                }]
+	        },
+	            options: {
+	                scales:{
+	                    y: {
+	                        beginAtZero: true
+	                    }
+	                }
+	            }
+	    });  
+
+	} else { // Yearly
+            const myChart = new Chart(ctx, {
+	                type: 'bar',
+	                data: {
+	                    labels: [
+	                    'January',
+	                    'Febrauary',
+	                    'March',
+	                    'April',
+	                    'May',
+	                    'June',
+	                    'July',
+	                    'August',
+	                    'September',
+	                    'October',
+	                    'November',
+	                    'December'
+	                    ],
+	                datasets: [{
+	                    label: 'Your Monthly Expenditure',
+	                    data: [420, 456, 473, 485, 468, 452, 490],
+	                    backgroundColor: [
+	                        'rgba(255, 99, 132, 0.2)',
+	                        'rgba(54, 162, 235, 0.2)',
+	                        'rgba(255, 206, 86, 0.2)',
+	                        'rgba(75, 192, 192, 0.2)',
+	                        'rgba(153, 102, 255, 0.2)',
+	                        'rgba(255, 159, 64, 0.2)',
+	                        'rgba(54, 162, 235, 0.5)',                
+	                    ],
+	                    borderColor:[
+	                        'rgba(255, 99, 132, 0.2)',
+	                        'rgba(54, 162, 235, 0.2)',
+	                        'rgba(255, 206, 86, 0.2)',
+	                        'rgba(75, 192, 192, 0.2)',
+	                        'rgba(153, 102, 255, 0.2)',
+	                        'rgba(255, 159, 64, 0.2)',
+	                        'rgba(54, 162, 235, 0.5)',
+	                    ],
+	                    hoverOffset: 2,
+	                    borderWidth: 1.5,
+	                }]
+	        },
+	            options: {
+	                scales:{
+	                    y: {
+	                        beginAtZero: true
+	                    }
+	                }
+	            }
+	    });
+	}
+}
+
+
+
 function showHome() {
 	// Clear document container
 	var docContent = document.getElementById("content");
 	docContent.innerHTML = "";
-
-	// Main content container on the webpage
-	var docContent = document.getElementById("content");
 
 	// Create "Add order" bubble
 	var innerContent =  '<A HREF="javascript:void;" onclick="showAddOrderMenu()">' +
