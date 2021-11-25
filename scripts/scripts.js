@@ -74,7 +74,9 @@ function genGraphs() {
 }
 
 function addSpendingGraph() {
-	const ctx = document.getElementById('spendingChart').getContext('2d');
+	const canvas = document.getElementById('spendingChart');
+	const ctx = canvas.getContext('2d');
+
 	if (selectedRange == "week") {
 		const myChart = new Chart(ctx, {
 	               type: 'bar',
@@ -89,7 +91,7 @@ function addSpendingGraph() {
 	                    'Sunday'
 	                    ],
 	                datasets: [{
-	                    label: 'Your daily Expenditure ($)',
+	                    label: 'Your Weekly Expenditure ($)',
 	                    data: [10, 8, 15, 12, 16, 14, 20],
 	                    backgroundColor: [
 	                        'rgba(255, 99, 132, 0.2)',
@@ -136,7 +138,7 @@ function addSpendingGraph() {
 	                    'Week7'
 	                    ],
 	                datasets: [{
-	                    label: 'Your Weekly Expenditure',
+	                    label: 'Your Monthly Expenditure ($)',
 	                    data: [100, 75, 97, 110, 85, 105, 120],
 	                    backgroundColor: [
 	                        'rgba(255, 99, 132, 0.2)',
@@ -188,8 +190,8 @@ function addSpendingGraph() {
 	                    'December'
 	                    ],
 	                datasets: [{
-	                    label: 'Your Monthly Expenditure',
-	                    data: [420, 456, 473, 485, 468, 452, 490],
+	                    label: 'Your Yearly Expenditure ($)',
+	                    data: [0, 420, 456, 473, 485, 468, 452, 490, 320, 483, 457, 490],
 	                    backgroundColor: [
 	                        'rgba(255, 99, 132, 0.2)',
 	                        'rgba(54, 162, 235, 0.2)',
@@ -231,7 +233,7 @@ function showHome() {
 	docContent.innerHTML = "";
 
 	// Create "Add order" bubble
-	var innerContent =  '<A HREF="javascript:void;" onclick="showAddOrderMenu()">' +
+	var innerContent =  '<A HREF="javascript:void(0);" onclick="showAddOrderMenu()">' +
 				'<IMG SRC="media/images/addbutton.png">Add Order...</A>';
 	var addOrderBtn = createBubble(innerContent);
 
