@@ -134,8 +134,15 @@ function addSpendingGraph() {
 	                    title: {
                 	        display: true,
 	                        text: 'Weekly Expenditure ($)'
-	                    }
-	                }
+	                    },
+				tooltip: {
+					callbacks: {
+						label: function(context) {
+							return ' $' + context.parsed.y;
+						}
+					}
+				}
+			}
 	            }
 	    });
  
@@ -144,13 +151,13 @@ function addSpendingGraph() {
 	                type: 'bar',
 	                data: {
 	                    labels: [
-	                    'Week1',
-	                    'Week2',
-	                    'Week3',
-	                    'Week4',
-	                    'Week5',
-	                    'Week6',
-	                    'Week7'
+	                    'Week 1',
+	                    'Week 2',
+	                    'Week 3',
+	                    'Week 4',
+	                    'Week 5',
+	                    'Week 6',
+	                    'Week 7'
 	                    ],
 	                datasets: [{
 	                    label: '',
@@ -193,8 +200,15 @@ function addSpendingGraph() {
 	                    title: {
                 	        display: true,
 	                        text: 'Monthly Expenditure ($)'
-	                    }
-	                }
+	                    },
+				tooltip: {
+					callbacks: {
+						label: function(context) {
+							return ' $' + context.parsed.y;
+						}
+					}
+				}
+			}
 	            }
 	    });  
 
@@ -257,8 +271,15 @@ function addSpendingGraph() {
 	                    title: {
                 	        display: true,
 	                        text: 'Yearly Expenditure ($)'
-	                    }
-	                }
+	                    },
+				tooltip: {
+					callbacks: {
+						label: function(context) {
+							return ' $' + context.parsed.y;
+						}
+					}
+				}
+			}
 	            }
 	    });
 	}
