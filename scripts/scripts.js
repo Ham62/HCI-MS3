@@ -44,9 +44,9 @@ function showStats() {
 				'<INPUT TYPE = "radio" ID="year" name="rangeSel" value="year" onClick="changeRangeSel(this)">' +
 				'<LABEL FOR="year">Last Year</LABEL>' +
 				'<INPUT TYPE = "radio" ID="month" name="rangeSel" value="month" onClick="changeRangeSel(this)">' +
-				'<LABEL FOR="year">Last Month</LABEL>' +
+				'<LABEL FOR="month">Last Month</LABEL>' +
 				'<INPUT TYPE = "radio" ID="week" name="rangeSel" value="week" onClick="changeRangeSel(this)">' +
-				'<LABEL FOR="year">Last Week</LABEL>' +
+				'<LABEL FOR="week">Last Week</LABEL>' +
 				'</FORM>' +
 				'<A HREF="">Change Budget Goals</A>';
 
@@ -71,6 +71,9 @@ function genGraphs() {
 
 	docContent.appendChild(createBubble('<canvas id="spendingChart"></canvas>'));
 	addSpendingGraph();
+
+	docContent.appendChild(createBubble('<canvas id="locationChart"></canvas>'));
+	addLocationChart();
 }
 
 function addSpendingGraph() {
@@ -91,7 +94,7 @@ function addSpendingGraph() {
 	                    'Sunday'
 	                    ],
 	                datasets: [{
-	                    label: 'Weekly Expenditure ($)',
+	                    label: '',
 	                    data: [10, 8, 15, 12, 16, 14, 20],
 	                    backgroundColor: [
 	                        'rgba(255, 99, 132, 0.5)',
@@ -118,7 +121,19 @@ function addSpendingGraph() {
 	            options: {
 	                scales:{
 	                    y: {
-	                        beginAtZero: true
+	                        beginAtZero: true,
+		                ticks: {
+		                    // Include a dollar sign in the ticks
+		                    callback: function(value, index, values) {
+		                        return '$' + value;
+		                    },
+		                }
+	                    }
+	                },
+	                plugins: {
+	                    title: {
+                	        display: true,
+	                        text: 'Weekly Expenditure ($)'
 	                    }
 	                }
 	            }
@@ -138,7 +153,7 @@ function addSpendingGraph() {
 	                    'Week7'
 	                    ],
 	                datasets: [{
-	                    label: 'Monthly Expenditure ($)',
+	                    label: '',
 	                    data: [100, 75, 97, 110, 85, 105, 120],
 	                    backgroundColor: [
 	                        'rgba(255, 99, 132, 0.5)',
@@ -165,7 +180,19 @@ function addSpendingGraph() {
 	            options: {
 	                scales:{
 	                    y: {
-	                        beginAtZero: true
+	                        beginAtZero: true,
+		                ticks: {
+		                    // Include a dollar sign in the ticks
+		                    callback: function(value, index, values) {
+		                        return '$' + value;
+		                    },
+		                }
+	                    }
+	                },
+	                plugins: {
+	                    title: {
+                	        display: true,
+	                        text: 'Monthly Expenditure ($)'
 	                    }
 	                }
 	            }
@@ -217,7 +244,13 @@ function addSpendingGraph() {
 	            options: {
 	                scales:{
 	                    y: {
-	                        beginAtZero: true
+	                        beginAtZero: true,
+		                ticks: {
+		                    // Include a dollar sign in the ticks
+		                    callback: function(value, index, values) {
+		                        return '$' + value;
+		                    },
+		                }
 	                    }
 	                },
 	                plugins: {
@@ -231,6 +264,77 @@ function addSpendingGraph() {
 	}
 }
 
+function addLocationChart() {
+	const canvas = document.getElementById('locationChart');
+	const ctx = canvas.getContext('2d');
+
+	if (selectedRange == "week") {
+		const myChart = new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: ['Skip The Dishes', 'Uber Eats', 'Door Dash'],
+				datasets: [{
+					data: [57, 19, 24],
+					backgroundColor: ['#FF6384', '#36A2EB', '#FFCD56'],
+					hoverOffset: 4
+				}]
+			},
+		
+			options: {
+				plugins: {
+					title: {
+						display:true,
+						text:'Where are you ordering from?'
+					}
+				}
+			}
+		});
+	} else if (selectedRange == "month") {
+		const myChart = new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: ['Skip The Dishes', 'Uber Eats', 'Door Dash'],
+				datasets: [{
+					data: [7, 4, 9],
+					backgroundColor: ['#FF6384', '#36A2EB', '#FFCD56'],
+					hoverOffset: 4
+				}]
+			},
+		
+			options: {
+				plugins: {
+					title: {
+						display:true,
+						text:'Where are you ordering from?'
+					}
+				}
+			}
+		});
+	} else { // Yearly
+		const myChart = new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: ['Skip The Dishes', 'Uber Eats', 'Door Dash'],
+				datasets: [{
+					data: [69, 52, 30],
+					backgroundColor: ['#FF6384', '#36A2EB', '#FFCD56'],
+					hoverOffset: 4
+				}]
+			},
+		
+			options: {
+				plugins: {
+					title: {
+						display:true,
+						text:'Where are you ordering from?'
+					}
+				}
+			}
+		});
+	}
+					
+	
+}
 
 
 function showHome() {
@@ -262,7 +366,9 @@ function showAddOrderMenu() {
 	var docContent = document.getElementById("content");
 	docContent.innerHTML = "";
 
-	var innerContent = '<FORM ID="newOrderForm">' +
+	var innerContent = '<DIV class="center">' +
+			'<FORM ID="newOrderForm">' +
+				'<H2>Add Order</H2>' +
 				'<LABEL FOR="mealType">Meal Type:</LABEL><BR>' +
 				'<SELECT NAME="mealType" ID="mealType">' +
 					'<OPTION VALUE="none">Pick One...</OPTION>' +
@@ -277,16 +383,17 @@ function showAddOrderMenu() {
 				'<SELECT NAME="appSel" ID="locationSel">' +
 					'<OPTION VALUE="none">Pick One...</OPTION>' +
 					'<OPTION VALUE="Doordash">Doordash</OPTION>' +
-					'<OPTION VALUE="Skip">Skip The Dishes</OPTION>' +
-					'<OPTION VALUE="UberEats">Uber Eats</OPTION>' +
+					'<OPTION VALUE="Skip The Dishes">Skip The Dishes</OPTION>' +
+					'<OPTION VALUE="Uber Eats">Uber Eats</OPTION>' +
 					'<OPTION VALUE="Other">Other</OPTION>' +
 				'</SELECT><BR>' +
 				'<LABEL FOR="orderName">What did you order?</LABEL><BR>' +
 				'<INPUT TYPE="text" ID="orderName" NAME="orderName"><BR>' +
-				'<LABEL FOR="orderCost">Cost: $</LABEL>' +
+				'<LABEL FOR="orderCost">Cost: $</LABEL><BR>' +
 				'<INPUT TYPE="number" ID="orderCost" NAME="orderCost" min="0" step="0.01" placeholder="0.00"><BR>' +
 			'</FORM>' +
-			'<BUTTON onclick="submitOrder()">Confirm</BUTTON><BUTTON onclick="resetOrder()">Reset</BUTTON>';
+			'<BUTTON onclick="submitOrder()">Confirm</BUTTON><BUTTON onclick="resetOrder()">Reset</BUTTON>' +
+			'</DIV>';
 
 
 	var addOrderMenu = createBubble(innerContent);
@@ -296,12 +403,12 @@ function showAddOrderMenu() {
 // Create new order bubble and add to list
 function addOrderBubble(appSel, locationSel, mealName, mealCost) {
 	var innerContent = '<DIV class="orderSource">' + locationSel + '</DIV>' +
-				'<DIV class="orderDate">' + new Date().toLocaleDateString() + '</DIV>' +
+				'<DIV class="orderDate">' + new Date().toLocaleDateString() + '</DIV><BR>' +
 				'<DIV class="orderName">' + mealName + " - $" + mealCost + '</DIV>' +
 				'<DIV class="orderApp">' + appSel + '</DIV>';
 
 	var orderBubble = createBubble(innerContent);
-	orderList.unshift(orderBubble);
+	orderList.unshift(orderBubble); // Place at top of array
 
 	// Go to home page (order list)
 	showHome();
@@ -349,7 +456,7 @@ function submitOrder() {
 		return;
 	}
 
-	addOrderBubble(mealType, locationSel, mealName, mealCost);
+	addOrderBubble(appSel, locationSel, mealName, mealCost);
 }
 
 

@@ -1,8 +1,17 @@
+/* Import Google's Open Sans font */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
 body {
 	background-color: #F0F0F0;
+	font-family: 'Open Sans';
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
+}
+
+H2 {
+	padding: 0;
+	margin: 0;
 }
 
 #header {
@@ -52,7 +61,7 @@ body {
 
 	color: blue;
 
-	padding-top: 0.7em;
+	padding-top: 0.3em;
 	text-align: center;
 	text-decoration: none;
 	background-color: #FEF;
@@ -74,6 +83,12 @@ body {
 #nav .button {
 	font-size: 1.5em;
 }
+
+#nav .button img {
+	height: 1em;
+	transform: translate(0, 0.1em);
+}
+
 
 #content {
 	position: absolute;
@@ -101,7 +116,7 @@ body {
 
 	/* Width constraints */
 	width: 85%;
-	max-width: 100ch;
+	max-width: 80ch;
 
 	margin: 1em 0em 2em 0em;
 
@@ -123,6 +138,7 @@ body {
 	display: block;
 	width: 100%;
 	font-size: 14pt;
+	text-align:center;
 }
 
 #bubble .center {
@@ -139,8 +155,66 @@ body {
 	border-radius: 0.5em;
 }
 
-#bubble .content img {
-	/*transform: translate(0, 0.5em);*/
+#spendingChart {
+	max-height: 15em;
+}
+
+#locationChart {
+	max-height: 10em;
+}
+
+
+#bubble .content form {
+	display: block;
+	text-align: left;
+}
+
+#bubble .content a {
+	padding: 0.5em 1em;
+
+	background: linear-gradient(0deg, #ffd39f 0%, #ffdeb5 50%, #ffd39f 100%);
+
+	border-color: #202020;
+	border-style: solid;
+	border-width: 0.15em;
+	border-radius: 2em;
+}
+
+#bubble .content a img {
+	height: 1em;
+	transform: translate(0, 0.2em);
+}
+
+#bubble .addOrder {
+	width: 78em;
+}
+
+#newOrderForm select {
+	width: 16em;
+}
+
+#newOrderForm input {
+	width: 16em;
+}
+
+#bubble .content .orderSource {
+	float: left;
+	transform: translate(1em, -1em);
+}
+
+#bubble .content .orderDate {
+	float: right;
+	transform: translate(-1em, -1em);
+}
+
+#bubble .content .orderName {
+	transform: translate(1em, -0.5em);
+	float: left;
+}
+
+#bubble .content .orderApp {
+	transform: translate(-1em, -0.5em);
+	float: right;
 }
 
 /* Standardize box sizing */
