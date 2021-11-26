@@ -97,6 +97,10 @@ function showHome() {
 //           functions             //
 /////////////////////////////////////
 
+function selectAddMode() {
+	
+}
+
 // Show order menu
 function showAddOrderMenu() {
 	// Clear document container
@@ -126,12 +130,12 @@ function showAddOrderMenu() {
 				'</SELECT><BR>' +
 				'<LABEL FOR="orderName">What did you order?</LABEL><BR>' +
 				'<INPUT TYPE="text" ID="orderName" NAME="orderName"><BR>' +
+				'<DIV ID="costEnter">' +
 				'<LABEL FOR="orderCost">Cost: $</LABEL><BR>' +
 				'<INPUT TYPE="number" ID="orderCost" NAME="orderCost" min="0" step="0.01" placeholder="0.00"><BR>' +
+				'</DIV>' +
 			'</FORM>' +
 			'<BUTTON id="btnConfirm" onclick="submitOrder()">Confirm</BUTTON><BUTTON id="btnCancel" onclick="showHome()">Cancel</BUTTON>' +
-			//'<A HREF="javascript:void(0)" class="confirm" onclick="submitOrder()">Confirm</A>' +
-			//'<A HREF="javascript:void(0)" class="cancel" onclick="showHome()">Cancel</A>' +
 			'</DIV>';
 
 
@@ -142,8 +146,8 @@ function showAddOrderMenu() {
 // Create new order bubble and add to list
 function addOrderBubble(appSel, locationSel, mealType, mealName, mealCost) {
 	var innerContent = 
-				'<DIV class="orderSource">' + locationSel + ' - ' + mealType + '</DIV>' +
 				'<DIV class="orderType">' + mealType + '</DIV>' +
+				'<DIV class="orderSource">' + locationSel + '</DIV>' +
 				'<DIV class="orderDate">' + new Date().toLocaleDateString() + '</DIV><BR>' +
 				'<DIV class="orderName">' + mealName + " - $" + mealCost + '</DIV>' +
 				'<DIV class="orderApp">' + appSel + '</DIV>';
@@ -227,13 +231,13 @@ function changeRangeSel(newSelection) {
 function genGraphs() {
 	var docContent = document.getElementById("content");
 
-	// Spending over time bar chart
-	docContent.appendChild(createBubble('<canvas id="spendingChart"></canvas>'));
-	addSpendingGraph();
-
 	// Budget goal report
 	var budgetGoal = createBubble('<div id="spendgoals">'+addBudgetGoalBubble()+'</div>');
 	docContent.appendChild(budgetGoal);
+
+	// Spending over time bar chart
+	docContent.appendChild(createBubble('<canvas id="spendingChart"></canvas>'));
+	addSpendingGraph();
 
 	// Order location pie chart
 	docContent.appendChild(createBubble('<canvas id="locationChart"></canvas>'));
@@ -520,7 +524,7 @@ function addLocationChart() {
 function addBudgetGoalBubble() {
 	var congrats, dollar, over, range;
 	if (selectedRange == "week") {
-		congrats = "Sorry, y";
+		congrats = "Oops! Y";
 		dollar = "12";
 		over = "over";
 		range = "weekly";

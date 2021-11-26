@@ -16,9 +16,12 @@ img {
   width:400px;
   padding:30px;
   position: absolute;
-  top:50%;
+
+
+  /*top:50%;*/
   left:50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, 0%);
+
   background-color: #FDFDFD;
   text-align:center;
 	border-color: #FDFDFD;
