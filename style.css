@@ -206,6 +206,10 @@ form {
 	transform: translate(0, 0.2em);
 }
 
+#bubble .addOrder a img {
+	transform: translate(0, 0.1em);
+	padding-right: 0.25em;
+}
 
 #newOrderForm select {
 	width: 16em;
@@ -246,7 +250,7 @@ button:hover {
 /* Order Bubbles for review page */
 #bubble .content .orderType {
 	float: middle;
-	transform: translate(0em, 0em);
+	transform: translate(0em, -1.2em);
 }
 
 #bubble .content .orderSource {
