@@ -169,10 +169,20 @@ H2 {
 	text-align: left;
 }
 
+form {
+	margin-bottom: 2em;
+}
+
+#selectRange label {
+	margin-right: 2em;
+}
+
 #bubble .content a {
 	padding: 0.5em 1em;
+	text-decoration: none;
+	color: #0000FF;
 
-	background: linear-gradient(0deg, #ffd39f 0%, #ffdeb5 50%, #ffd39f 100%);
+	background: linear-gradient(0deg, #ffd39f 0%, #ffdbae 50%, #ffd39f 100%);
 
 	border-color: #202020;
 	border-style: solid;
@@ -180,14 +190,22 @@ H2 {
 	border-radius: 2em;
 }
 
+#bubble .content a:hover {
+	background: none;
+}
+
+#bubble .addOrder a {
+	display:block;
+	border-style: none;
+	font-size: 25pt;
+	margin: -0.5em;
+}
+
 #bubble .content a img {
 	height: 1em;
 	transform: translate(0, 0.2em);
 }
 
-#bubble .addOrder {
-	width: 78em;
-}
 
 #newOrderForm select {
 	width: 16em;
@@ -195,6 +213,40 @@ H2 {
 
 #newOrderForm input {
 	width: 16em;
+}
+
+button {
+	padding: 0.5em 1em;
+	text-decoration: none;
+	color: #0000FF;
+	font-size: 14pt;
+
+	background: linear-gradient(0deg, #ffd39f 0%, #ffdbae 50%, #ffd39f 100%);
+}
+
+button:hover {
+	background: none;
+	cursor: pointer;
+}
+
+#btnConfirm {
+	border-color: #202020;
+	border-style: solid;
+	border-width: 0.15em;
+	border-radius: 2em 0em 0em 2em;
+}
+
+#btnCancel {
+	border-color: #202020;
+	border-style: solid;
+	border-width: 0.15em;
+	border-radius: 0em 2em 2em 0em;
+}
+
+/* Order Bubbles for review page */
+#bubble .content .orderType {
+	float: middle;
+	transform: translate(0em, 0em);
 }
 
 #bubble .content .orderSource {
