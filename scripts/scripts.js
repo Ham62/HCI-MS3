@@ -91,15 +91,15 @@ function addSpendingGraph() {
 	                    'Sunday'
 	                    ],
 	                datasets: [{
-	                    label: 'Your Weekly Expenditure ($)',
+	                    label: 'Weekly Expenditure ($)',
 	                    data: [10, 8, 15, 12, 16, 14, 20],
 	                    backgroundColor: [
-	                        'rgba(255, 99, 132, 0.2)',
-	                        'rgba(54, 162, 235, 0.2)',
-	                        'rgba(255, 206, 86, 0.2)',
-	                        'rgba(75, 192, 192, 0.2)',
-	                        'rgba(153, 102, 255, 0.2)',
-	                        'rgba(255, 159, 64, 0.2)',
+	                        'rgba(255, 99, 132, 0.5)',
+	                        'rgba(54, 162, 235, 0.5)',
+	                        'rgba(255, 206, 86, 0.5)',
+	                        'rgba(75, 192, 192, 0.5)',
+	                        'rgba(153, 102, 255, 0.5)',
+	                        'rgba(255, 159, 64, 0.5)',
 	                        'rgba(54, 162, 235, 0.5)',                
 	                    ],
 	                    borderColor:[
@@ -138,15 +138,15 @@ function addSpendingGraph() {
 	                    'Week7'
 	                    ],
 	                datasets: [{
-	                    label: 'Your Monthly Expenditure ($)',
+	                    label: 'Monthly Expenditure ($)',
 	                    data: [100, 75, 97, 110, 85, 105, 120],
 	                    backgroundColor: [
-	                        'rgba(255, 99, 132, 0.2)',
-	                        'rgba(54, 162, 235, 0.2)',
-	                        'rgba(255, 206, 86, 0.2)',
-        	                'rgba(75, 192, 192, 0.2)',
-	                        'rgba(153, 102, 255, 0.2)',
-	                        'rgba(255, 159, 64, 0.2)',
+	                        'rgba(255, 99, 132, 0.5)',
+	                        'rgba(54, 162, 235, 0.5)',
+	                        'rgba(255, 206, 86, 0.5)',
+        	                'rgba(75, 192, 192, 0.5)',
+	                        'rgba(153, 102, 255, 0.5)',
+	                        'rgba(255, 159, 64, 0.5)',
 	                        'rgba(54, 162, 235, 0.5)',                
 	                    ],
 	                    borderColor:[
@@ -190,15 +190,15 @@ function addSpendingGraph() {
 	                    'December'
 	                    ],
 	                datasets: [{
-	                    label: 'Your Yearly Expenditure ($)',
-	                    data: [0, 420, 456, 473, 485, 468, 452, 490, 320, 483, 457, 490],
+	                    label: '',
+	                    data: [69, 420, 456, 473, 485, 468, 452, 490, 320, 483, 457, 490],
 	                    backgroundColor: [
-	                        'rgba(255, 99, 132, 0.2)',
-	                        'rgba(54, 162, 235, 0.2)',
-	                        'rgba(255, 206, 86, 0.2)',
-	                        'rgba(75, 192, 192, 0.2)',
-	                        'rgba(153, 102, 255, 0.2)',
-	                        'rgba(255, 159, 64, 0.2)',
+	                        'rgba(255, 99, 132, 0.5)',
+	                        'rgba(54, 162, 235, 0.5)',
+	                        'rgba(255, 206, 86, 0.5)',
+	                        'rgba(75, 192, 192, 0.5)',
+	                        'rgba(153, 102, 255, 0.5)',
+	                        'rgba(255, 159, 64, 0.5)',
 	                        'rgba(54, 162, 235, 0.5)',                
 	                    ],
 	                    borderColor:[
@@ -218,6 +218,12 @@ function addSpendingGraph() {
 	                scales:{
 	                    y: {
 	                        beginAtZero: true
+	                    }
+	                },
+	                plugins: {
+	                    title: {
+                	        display: true,
+	                        text: 'Yearly Expenditure ($)'
 	                    }
 	                }
 	            }
